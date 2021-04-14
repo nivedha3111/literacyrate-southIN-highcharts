@@ -10,13 +10,8 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
 </head>
 <style>
-    #container {
-        height: 400px;
-    }
-
     .highcharts-figure,
     .highcharts-data-table table {
         min-width: 310px;
@@ -58,6 +53,12 @@
 
     .highcharts-data-table tr:hover {
         background: #f1f7ff;
+    }
+
+    #button-bar {
+        min-width: 310px;
+        max-width: 800px;
+        margin: 0 auto;
     }
 </style>
 
@@ -103,58 +104,84 @@
         function plot_chart(data) {
 
             Highcharts.chart('container', {
+
                 chart: {
-                    type: 'area'
+                    type: 'column'
                 },
+
                 title: {
-                    text: 'South India literacy rate (1971-2011)'
+                    text: 'South India literacy rate(1971-2011)'
                 },
+
                 subtitle: {
-                    text: 'Source: https://www.epw.in/journal/2019/48/special-articles/literacy-achievement-india.html'
+                    text: data['subtitle']
                 },
+
+                legend: {
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    layout: 'vertical'
+                },
+
                 xAxis: {
                     categories: data['years_data'],
-                    tickmarkPlacement: 'on',
-                    title: {
-                        enabled: false
-                    }
-                },
-                yAxis: {
                     
+                },
+
+                yAxis: {
+                    allowDecimals: false,
                     title: {
-                        text: 'Percentage'
-                    } 
-                },
-                tooltip: {
-                    split: true,
-                    valueSuffix: ' %'
-                },
-                plotOptions: {
-                    area: {
-                        stacking: 'normal',
-                        lineColor: '#666666',
-                        lineWidth: 1,
-                        marker: {
-                            lineWidth: 1,
-                            lineColor: '#666666'
-                        }
+                        text: 'percentage'
                     }
                 },
+
                 series: [{
                     name: 'TamilNadu',
-                    data: [45.4, 54.4, 62.7, 73.5, 80.3]
-                }, {
-                    name: 'Kerala',
-                    data: [69.8, 78.9, 89.8, 90.9, 93.0]
-                }, {
-                    name: 'Karnataka',
-                    data: [36.8, 46.2, 56.0, 66.6, 75.6]
+                    data: [45.5, 54.4, 62.7, 73.5, 80.3]
                 }, {
                     name: 'Andhra Pradesh',
                     data: [24.6, 35.7, 44.1, 60.5, 67.7]
+                }, {
+                    name: 'Kerala',
+                    data: [69.8, 78.9, 89.8, 90.9, 93.9]
+                },{
+                    name: 'Karnataka',
+                    data: [36.8, 46.2, 56.0, 66.6, 75.6]
+                }],
 
-                }]
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                align: 'center',
+                                verticalAlign: 'bottom',
+                                layout: 'horizontal'
+                            },
+                            yAxis: {
+                                labels: {
+                                    align: 'left',
+                                    x: 0,
+                                    y: -5
+                                },
+                                title: {
+                                    text: null
+                                }
+                            },
+                            subtitle: {
+                                text: null
+                            },
+                            credits: {
+                                enabled: false
+                            }
+                        }
+                    }]
+                }
             });
+
+           
         } //- plot chart
     </script>
 </body>

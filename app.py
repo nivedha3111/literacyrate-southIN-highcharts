@@ -40,7 +40,7 @@ def read_json():
         #'local_data': data,
         #'series_names': 'series names',
        # 'title': 'netflix comedy series and their IMDb rating ',
-       # 'subtitle': 'Source: https://www.netflix.com/in/browse/genre/10375',
+       'subtitle': 'Source: https://www.netflix.com/in/browse/genre/10375',
         #'rate_data': rate_list
     }
 
